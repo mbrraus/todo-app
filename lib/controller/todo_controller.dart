@@ -42,7 +42,7 @@ class TodoController extends GetxController {
 
   void updateSearchKeyword(String keyword) {
     searchKeyword = keyword;
-    loadTodos();
+    loadFilteredTodos();
   }
 
   void changeSelected(DateTime date) {
@@ -50,48 +50,41 @@ class TodoController extends GetxController {
     loadFilteredTodos();
   }
 
-  Future<void> loadTodos() async {
-    todosList = await _databaseService.getAllTodos();
-    loadFilteredTodos();
+  void loadTodos()  {
+    _databaseService.getTodos().listen((querySnapshot) {
+      todosList = querySnapshot.docs.map((doc) => doc.data()).toList();
+      loadFilteredTodos();
+    });
   }
 
   void loadFilteredTodos() {
     List<Todo> filteredTodos = _applyFilters(todosList);
     streamController.sink.add(filteredTodos);
-    print('loaded');
   }
 
   Future<void> addTodo(Todo newTodo) async {
-    // todoList.add(newTodo);
-    // filteredTodos = getTodosByDate();
-    // update();
-    //
-    // try {
-    //   await _databaseService.addTodo(newTodo); // Veritabanına kaydet
-    // } catch (e) {
-    //   todoList.remove(newTodo);
-    //   filteredTodos = getTodosByDate();
-    //   update();
-    //   print('Veritabanına eklerken hata oluştu: $e');
-    // }
+    todosList.add(newTodo);
     await _databaseService.addTodo(newTodo);
-    loadTodos();
+    loadFilteredTodos();
   }
 
-  void deleteTodo(Todo todo) async {
-    // todoList.remove(todo);
-    // filteredTodos = getTodosByDate();
-    // update();
-    //
-    // await DatabaseService().deleteTodo(todo.id);
+  Future<void> deleteTodo(Todo todo) async {
+    todosList.removeWhere((t) => t.id == todo.id);
     await _databaseService.deleteTodo(todo.id);
-    loadTodos();
+    loadFilteredTodos();
   }
 
-  void changeTodo(Todo todo) async {
+  Future<void> changeTodo(Todo todo) async {
     todo.isDone = !todo.isDone;
     await _databaseService.updateTodo(todo);
-    loadTodos();
+    loadFilteredTodos();
+  }
+
+
+  @override
+  void onClose() {
+    streamController.close();
+    super.onClose();
   }
 
   Color getPriorityColor(Priority priority) {

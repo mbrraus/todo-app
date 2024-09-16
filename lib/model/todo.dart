@@ -1,4 +1,4 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
 
 enum Priority { low, medium, high }
@@ -18,13 +18,17 @@ class Todo {
       this.priority = Priority.medium});
 
   factory Todo.fromMap(Map<String, dynamic> map) {
+    print('deneme ');
     return Todo(
-      id: map['id'].toString(),
+      id: map['id'],
       name: map['name'],
-      isDone: map['isDone'] == 1 ? true : false,
-      deadline:
-          map['deadline'] != null ? DateTime.parse(map['deadline']) : null,
-      priority: Priority.values[map['priority']],
+      isDone: map['isDone'],
+      deadline: map['deadline'] != null
+          ? (map['deadline'] as Timestamp).toDate()
+          : null,
+      priority: Priority.values.firstWhere(
+          (e) => e.toString().split('.').last == map['priority'],
+          orElse: () => Priority.medium),
     );
   }
 
@@ -32,9 +36,9 @@ class Todo {
     return {
       'id': id,
       'name': name,
-      'isDone': isDone ? 1 : 0,
-      'deadline': deadline?.toIso8601String(),
-      'priority': priority.index,
+      'isDone': isDone,
+      'deadline': deadline != null ? Timestamp.fromDate(deadline!) : null,
+      'priority': priority.toString().split('.').last,
     };
   }
 

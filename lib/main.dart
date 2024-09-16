@@ -15,8 +15,6 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // DatabaseService().database;
-  // DatabaseService().printDatabasePath();
 
   runApp(MyApp());
 }
