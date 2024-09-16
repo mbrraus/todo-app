@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
-import 'package:getx_todo/constants.dart';
+import 'package:getx_todo/utils/constants.dart';
 import 'package:getx_todo/controller/todo_controller.dart';
 import '../assets/icons/my_flutter_app_icons.dart';
 

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_todo/constants.dart';
-
-import 'database/database_service.dart';
+import 'package:getx_todo/utils/constants.dart';
+import 'package:getx_todo/utils/firebase_options.dart';
 import 'pages/home.dart';
-
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+
 
 
 Future<void> main() async {

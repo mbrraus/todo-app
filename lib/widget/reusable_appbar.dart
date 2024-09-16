@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:getx_todo/constants.dart';
+import 'package:getx_todo/utils/constants.dart';
 
 class ReusableAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;

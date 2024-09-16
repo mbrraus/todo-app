@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_todo/constants.dart';
+import 'package:getx_todo/utils/constants.dart';
 import 'package:getx_todo/controller/todo_controller.dart';
 import 'package:getx_todo/model/todo.dart';
 import 'package:getx_todo/widget/reusable_appbar.dart';

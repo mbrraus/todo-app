@@ -2,7 +2,7 @@ import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/instance_manager.dart';
 import 'package:getx_todo/controller/todo_controller.dart';
-import 'package:getx_todo/constants.dart';
+import 'package:getx_todo/utils/constants.dart';
 
 class CustomDatePicker extends StatelessWidget {
   CustomDatePicker({super.key});

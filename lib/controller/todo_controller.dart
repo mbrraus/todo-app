@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getx_todo/database/database_service.dart';
 import 'package:intl/intl.dart';
-import 'package:getx_todo/constants.dart';
+import 'package:getx_todo/utils/constants.dart';
 import '../model/todo.dart';
 
 class TodoController extends GetxController {

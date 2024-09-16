@@ -7,7 +7,7 @@ import 'package:getx_todo/pages/add_todo.dart';
 import 'package:getx_todo/widget/custom_date_picker.dart';
 import 'package:getx_todo/widget/reusable_appbar.dart';
 import 'package:getx_todo/widget/search_box.dart';
-import '../constants.dart';
+import '../utils/constants.dart';
 import '../model/todo.dart';
 import '../widget/todo_item.dart';
 
